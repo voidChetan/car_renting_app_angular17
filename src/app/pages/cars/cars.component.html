@@ -1,0 +1,101 @@
+<div class="container-fluid">
+    <div class="row"> 
+      <div class="col-6 text-start">
+        Car Portal
+      </div>
+      <div class="col-6 text-end">
+        <button class="btn btn-warning btn-sm" (click)="addNew()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"> Add New</button>
+      </div>
+    </div>
+    <div class="row">
+      @for (item of carList; track $index) {
+        <div class="col-3 pt-3">
+          <div class="card">
+            <img  [src]="item.carImage" height="100" />
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8 text-start">
+                  <span> {{item.brand}}</span> ({{item.model}})
+                </div>
+                <div class="col-4 text-end">
+                  <span> {{item.year}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-start">
+                  <small class="">
+                       {{item.color}}
+                  </small>
+                </div>
+                <div class="col-6 text-end">
+                  <span> $ {{item.dailyRate}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-start">
+                  <button  (click)="onDelete(item.carId)" class="btn btn-outline-danger btn-sm">Delete</button>
+                </div>
+                <div class="col-6 text-end">
+                  <button (click)="onEdit(item)" class="btn btn-outline-success  btn-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+      
+      
+    </div>
+   
+  </div>
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Add New Car</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" [formGroup]="carForm"> 
+      <div class="row">
+        <div class="col-6 mt-2">
+          <label>Reg No</label>
+          <input type="text" formControlName="regNo" class="form-control" placeholder="Enter car image url" />
+        </div>
+        <div class="col-6 mt-2">
+          <label>Brand</label>
+          <input type="text" formControlName="brand" class="form-control" placeholder="Enter brand name" />
+        </div>
+        <div class="col-6 mt-2">
+          <label>Model</label>
+          <input type="text" formControlName="model" class="form-control" placeholder="Enter model name" />
+        </div>
+        <div class="col-6 mt-2">
+          <label>Year</label>
+          <input type="text" formControlName="year" class="form-control" placeholder="Enter year" />
+        </div>
+        <div class="col-6 mt-2">
+          <label>Color</label>
+          <input type="text" formControlName="color" class="form-control" placeholder="Enter color" />
+        </div>
+        <div class="col-6 mt-2">
+          <label>Daily Rate</label>
+          <input type="text" formControlName="dailyRate" class="form-control" placeholder="Enter daily rate" />
+        </div>
+        <div class="col-6 mt-2">
+          <label>Car Image URL</label>
+          <input type="text" formControlName="carImage" class="form-control" placeholder="Enter car image url" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mt-2 text-center">
+          <button class="btn btn-sm btn-secondary m-1">Reset</button>
+          @if (carForm.controls['carId'].value ===0) {
+            <button class="btn btn-sm btn-success" (click)="onSaveCar()">Save Car</button>
+          } @else { 
+            <button class="btn btn-sm btn-warning" (click)="onUpdateCar()">Update Car</button>
+          }
+         
+         
+        </div>
+      </div>
+    </div>
+  </div>

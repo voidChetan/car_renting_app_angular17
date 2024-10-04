@@ -1,0 +1,32 @@
+<div class="body">
+    <div class="form-container">
+        <div class="login-container" id="login-container" [formGroup]="loginForm">
+            <h1 class="title">Log In</h1>
+            <p class="desc">Login to your account</p>
+            <div class="input-container">
+                <input type="email" formControlName="userName" placeholder="Enter Your User Name" autofocus = "on">
+            </div>
+            <div class="input-container">
+              <input type="text" formControlName="password" placeholder="Enter Your Password" autofocus = "on">
+          </div>
+            <div class="account-controls">
+                <a href=""> </a>
+                <button (click)="onLogin()">Login <i class="fas fa-solid fa-angle-right"></i></button>
+            </div>
+    
+            <span class="line"></span>
+            <!-- <span class="other-login-text">Or log in with</span>
+            <div class="social-logins">
+                <button class="social-login"><i style="color:#1e7bf2" class="fas fa-brands fa-facebook-f"></i></button>
+                <button class="social-login"><i style="color:#ea4335" class="fas fa-brands fa-google"></i></button>
+            </div>
+            <span class="signup-text">Don't have an account yet? <a id = "signup-form-toggler">Sign up</a></span> -->
+        </div>
+        <div class="placeholder-banner"  id="banner">
+            <img src="https://img.freepik.com/free-photo/white-offroader-jeep-parking_114579-4007.jpg?t=st=1715866530~exp=1715870130~hmac=3456407e37b6af36aa8ad02a817227247a1818146e10ee4ec2c6b4a4b80c316e&w=900" alt="" class="banner">
+        </div>
+    
+       
+    </div>
+</div>
+

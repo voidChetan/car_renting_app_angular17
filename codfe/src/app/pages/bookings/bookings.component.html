@@ -1,0 +1,129 @@
+<div class="container-fluid pt-1">
+    <div class="row"> 
+      <div class="col-6 text-start">
+        Booking Portal
+      </div>
+      <div class="col-6 text-end">
+        <button class="btn btn-warning btn-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"> Add New</button>
+      </div>
+    </div>
+    <div class="row pt-2">
+      <div class="col-md-12"> 
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>Sr</th>
+                <th> Booking Date</th>
+                <th> Name</th> 
+                <th>Mobile No</th>
+                <th>Brand</th>
+                <th>Model</th> 
+                <th>Total Bill Amount</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of bookingList; track $index) {
+                <tr>
+                  <td> {{$index +1}}</td>
+                  <td> {{item.bookingDate |date:'dd-MMM-yy'}}</td>
+                  <td> {{item.customerName}}</td>
+                  <td> {{item.mobileNo}}</td>
+                  <td> {{item.brand}}</td>
+                  <td> {{item.model}}</td>
+                  <td> {{item.totalBillAmount}}</td> 
+                  <td>Action</td>
+                </tr>
+              }
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">New Booking</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body"> 
+      <div class="row">
+        <div class="col-md-12"> 
+          <form id="newBookingForm">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group px-3">
+                  <label for="customerName">Customer Name</label>
+                  <input  type="text" name="CustomerName" [(ngModel)]="bookingObj.CustomerName" class="form-control" id="customerName" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group px-3">
+                  <label for="customerCity">Customer City</label>
+                  <input  type="text" name="CustomerCity" [(ngModel)]="bookingObj.CustomerCity" class="form-control" id="customerCity" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group px-3">
+                  <label for="mobileNo">Mobile No</label>
+                  <input  type="text" name="MobileNo" [(ngModel)]="bookingObj.MobileNo" class="form-control" id="MobileNo" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group px-3">
+                  <label for="email">Email</label>
+                  <input type="email" name="Email" [(ngModel)]="bookingObj.Email" class="form-control" id="Email" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group px-3">
+                    <label for="car">Select Car</label>
+                    <select class="form-control" name="CarId" [(ngModel)]="bookingObj.CarId" id="CarId">
+                        <option>Select Car</option>
+                        @for (item of carList; track $index) {
+                          <option [value]="item.carId">{{item.brand}}- {{item.model}}</option>
+                        }
+                    </select>
+                  </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group px-3">
+                  <label for="bookingDate">Booking Date</label>
+                  <input type="datetime-local" name="BookingDate" [(ngModel)]="bookingObj.BookingDate" class="form-control" id="BookingDate" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group px-3">
+                  <label for="discount">Discount</label>
+                  <input type="number" name="Discount" [(ngModel)]="bookingObj.Discount" class="form-control" id="Discount" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group px-3">
+                  <label for="totalBillAmount">Total Bill Amount</label>
+                  <input type="number" name="TotalBillAmount" [(ngModel)]="bookingObj.TotalBillAmount" class="form-control" id="TotalBillAmount" />
+                </div>
+              </div>
+            </div>
+            <div class="row pt-2">
+              <div class="col-12 text-center">
+                @if(bookingObj.BookingId == 0) {
+                  <button type="submit" class="btn btn-primary ms-2" (click)="onSave()">Create Booking</button>
+                } @else {
+                  <button type="button" class="btn btn-warning">Update</button>
+                }
+               
+               
+                <button type="button" class="btn btn-danger">Clear</button>
+              </div>
+            </div>
+
+            
+          </form>
+        </div>
+      </div> 
+    </div>
+  </div>
